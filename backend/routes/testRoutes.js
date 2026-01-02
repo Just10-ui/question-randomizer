@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { parseJson, crossOrig } from '../middleware/middleware.js';
+import { parseJson } from '../middleware/middleware.js';
 import { addTest, viewTest } from '../controller/testController.js';
 
 const testRouter = Router();
