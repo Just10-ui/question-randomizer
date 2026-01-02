@@ -23,3 +23,30 @@ export const viewTest = async (req, res) => {
     res.json(500).json({error: 'Server disconnected'});
   }
 };
+
+export const editTest = async (req, res) => {
+  const { test_name } = req.body;
+  const testId = req.params.testId;
+
+  try {
+    const result = await pool.query('UPDATE test SET text_name $1 WHERE test_id = $2 RETURNING *;', [test_name, testId]);
+
+    res.status(201).json({message: 'Updated a new test', test: result.rows[0]});
+  } catch (error) {
+    console.log(error);
+    res.json(500).json({error: 'Server disconnected'});
+  }
+};
+
+export const deleteTest = async (req, res) => {
+  const testId = req.params.testId;
+
+  try {
+    const result = await pool.query('DELETE test WHERE test_id = $1 RETURNING *;', [testId]);
+
+    res.status(201).json({message: 'Updated a new test', test: result.rows[0]});
+  } catch (error) {
+    console.log(error);
+    res.json(500).json({error: 'Server disconnected'});
+  }
+};
