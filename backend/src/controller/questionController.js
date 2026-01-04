@@ -17,12 +17,9 @@ export const viewQuestion = async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM questions;');
 
-    const shuffled = result.rows
-      .map(row => ({ row, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(obj => obj.row);
+    const randomize = shuffled(result.rows);
 
-    res.status(200).json(shuffled);
+    res.status(200).json(randomize);
   } catch (error) {
     console.log(error);
     res.json(500).json({error: 'Server disconnected'});
@@ -55,3 +52,9 @@ export const deleteQuestion = async (req, res) => {
     res.json(500).json({error: 'Server disconnected'});
   }
 };
+
+function shuffled(array) {
+  return array.map(row => ({row, Sort: Math.random()}))
+              .sort((a, b) => a.Sort - b.Sort)
+              .map(obj => obj.row);
+}

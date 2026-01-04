@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  border: 1px solid #000;
+  margin: 3rem auto;
+  border-radius: 10px;
+  width: 50%;
+  height: 85vh;
+  padding: 35px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+#addTest {
+  width: 47%;
+  height: 30vh;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.content {
+  border: 1px solid #000;
+  width: 47%;
+  height: 30vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.content h1 {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  min-width: 0;
+  flex-shrink: 1;
+  box-sizing: border-box;
+}
