@@ -1,37 +1,21 @@
-const addTest = document.getElementById('addTest');
-
-addTest.addEventListener('click', addTests);
-
-function addTests() {
-  const container = document.querySelector('.container');
-  const test = document.getElementById('nameTest').value;
-  const header = document.createElement('h1');
-  header.innerText = test.toUpperCase();
-  const divCont = document.createElement('div');
-  divCont.className = 'content';
-  const divBut = document.createElement('div');
-  divBut.className = 'buttons';
-  const editBtn = document.createElement('button');
-  editBtn.id = 'editTest';
-  editBtn.innerText = 'Edit';
-  const delBtn = document.createElement('button');
-  delBtn.id = 'deleteTest';
-  delBtn.innerText = 'Delete';
-
-  divBut.append(editBtn, delBtn);
-  divCont.append(header, divBut);
-  container.append(divCont);
-};
+const add = document.getElementById('addTest');
 
 async function getTest() {
   try {
     const response = await fetch('http://localhost:8080/api/test');
     const data = await response.json();
+    const container = document.querySelector('.container');
+    container.innerHTML = '';
+    const addBtn = document.createElement('button');
+    addBtn.id = 'testForm';
+    addBtn.setAttribute('popovertarget', 'addTest-form');
+    container.append(addBtn);
 
     data.forEach(value => {
-      const container = document.querySelector('.container');
+      addBtn.innerText = 'Add';
       const header = document.createElement('h1');
       header.innerText = value.test_name.toUpperCase();
+      header.id = value.test_id;
       const divCont = document.createElement('div');
       divCont.className = 'content';
       const divBut = document.createElement('div');
@@ -42,7 +26,7 @@ async function getTest() {
       const delBtn = document.createElement('button');
       delBtn.id = 'deleteTest';
       delBtn.innerText = 'Delete';
-      
+
       divBut.append(editBtn, delBtn);
       divCont.append(header, divBut);
       container.append(divCont);
@@ -52,3 +36,25 @@ async function getTest() {
   }
 }
 getTest();
+
+async function addTest() {
+  const test_name = document.getElementById('nameTest').value.toUpperCase();
+  try {
+    const response = await fetch('http://localhost:8080/api/test/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        test_name: test_name
+      })
+    })
+    const data = await response.json();
+    window.alert(data.message);
+    getTest();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+add.addEventListener('click', addTest);
