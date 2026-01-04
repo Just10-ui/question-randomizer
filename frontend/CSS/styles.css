@@ -12,14 +12,41 @@
   height: 85vh;
   padding: 35px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  overflow: hidden;
+  overflow: auto;
+  position: relative;
 }
 
-#addTest {
+#testForm {
   width: 47%;
   height: 30vh;
   font-size: 2rem;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#editTest {
+  width: 30%;
+  height: 5vh;
+  background-color: #008000;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+#deleteTest {
+  width: 30%;
+  height: 5vh;
+  background-color: #800400;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
   cursor: pointer;
 }
 
@@ -41,4 +68,33 @@
   min-width: 0;
   flex-shrink: 1;
   box-sizing: border-box;
+}
+
+#addTest-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: fit-content;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+#nameTest {
+  width: 50%;
+  height: 5vh;
+  padding: 10px;
+}
+
+#closePop {
+  width: 20%;
+  height: 5vh;
+  cursor: pointer;
+}
+
+#addTest {
+  width: 20%;
+  height: 5vh;
+  cursor: pointer;
 }
