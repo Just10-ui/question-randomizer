@@ -13,9 +13,11 @@
   padding: 35px;
   display: flex;
   flex-wrap: wrap;
+  gap: 30px;
   justify-content: space-between;
-  overflow: auto;
+  overflow-y: auto;
   position: relative;
+  clip-path: inset(0 round 10px);
 }
 
 #testForm {
@@ -30,7 +32,7 @@
   gap: 10px;
 }
 
-#editTest {
+.editTest {
   width: 30%;
   height: 5vh;
   background-color: #008000;
@@ -40,7 +42,7 @@
   cursor: pointer;
 }
 
-#deleteTest {
+.deleteTest {
   width: 30%;
   height: 5vh;
   background-color: #800400;
