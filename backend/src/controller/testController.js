@@ -23,3 +23,30 @@ export const addTest = async (req, res) => {
     res.status(500).json({message: 'Server can\'t be reached'});
   }
 };
+
+export const editTest = async (req, res) => {
+  const { testName } = req.body;
+  const testId = req.params.testId;
+
+  try {
+    const result = await pool.query('UPDATE test SET test_name = $1 WHERE test_id = $2 RETURNING *;', [testName.toUpperCase(), testId]);
+
+    res.status(200).json({message: 'Test successfully updated', test: result.rows[0]});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: 'Server can\'t be reached'});
+  }
+};
+
+export const deleteTest = async (req, res) => {
+  const testId = req.params.testId;
+
+  try {
+    const result = await pool.query('DELETE FROM test WHERE test_id = $1 RETURNING *;', [testId]);
+
+    res.status(200).json({message: 'Test successfully deleted', test: result.rows[0]});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: 'Server can\'t be reached'});
+  }
+};
