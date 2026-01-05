@@ -15,7 +15,7 @@ export const addTest = async (req, res) => {
   const { testName } = req.body;
 
   try {
-    const result = await pool.query('INSERT INTO test(test_name) VALUES ($1) RETURNING *;', [testName]);
+    const result = await pool.query('INSERT INTO test(test_name) VALUES ($1) RETURNING *;', [testName.toUpperCase()]);
 
     res.status(201).json({message: 'Test successfully created', test: result.rows[0]});
   } catch (error) {
