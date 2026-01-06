@@ -37,3 +37,30 @@ export const shuffleQuestion = async (req, res) => {
     res.status(500).json({message: 'Server can\'t be reached'});
   }
 };
+
+export const editQuestion = async (req, res) => {
+  const { description } = req.body;
+  const questionId = req.params.questionId;
+
+  try {
+    const result = await pool.query('UPDATE questions SET description = $1 WHERE question_id = $2 RETURNING *;', [description, questionId]);
+
+    res.status(200).json({message: 'Question has been updated', question: result.rows[0]});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: 'Server can\'t be reached'});
+  }
+};
+
+export const deleteQuestion = async (req, res) => {
+  const questionId = req.params.questionId;
+
+  try {
+    const result = await pool.query('DELETE FROM questions WHERE question_id = $1 RETURNING *;', [questionId]);
+
+    res.status(200).json({message: 'Question has been deleted', question: result.rows[0]});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: 'Server can\'t be reached'});
+  }
+};
