@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+  <div class="container">
+    <button id="addTest" popovertarget="add-form" popovertargetaction="show">Add</button>
+    <div class="test-container">
+      <div class="test-card">
+        <h1>TEST NAME</h1>
+        <div class="buttons">
+          <button id="editBtn" class="editBtn">Edit</button>
+          <button id="deleteBtn" class="deleteBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="add-form" popover="auto">
+    <label for="test-name"></label>
+    <input type="text" id="test-name" placeholder="Enter name...">
+    <button id="enter" popovertarget="add-form" popovertargetaction="hide">Enter</button>
+    <button id="close" popovertarget="add-form" popovertargetaction="hide">Close</button>
+  </div>
+
+  <script src="../JS/script.js"></script>
+</body>
+</html>
