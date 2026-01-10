@@ -48,7 +48,7 @@ async function addTest() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        testName: nameTest 
+        testName: nameTest
       })
     });
     const data = await response.json();
@@ -61,11 +61,11 @@ async function addTest() {
 }
 
 async function editTest(event) {
+  event.stopPropagation();
   const clickedBtn = event.currentTarget;
   const id = event.currentTarget.id;
-  const testCard = clickedBtn.closest('.test-card');
-  const testText =  testCard.querySelector('h1');
-  const update = window.prompt('Edit name', testText.innerText);
+  const testText = clickedBtn.closest('.test-card').querySelector('h1').innerText;
+  const update = window.prompt('Edit name', testText);
 
   if (update == null || update.trim() == '') {
     return;
@@ -77,7 +77,7 @@ async function editTest(event) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({testName: update})
+      body: JSON.stringify({ testName: update })
     });
     const data = await response.json();
     window.alert(data.message);
@@ -88,7 +88,12 @@ async function editTest(event) {
 }
 
 async function deleteTest(event) {
+  event.stopPropagation();
   const id = event.currentTarget.id;
+  const testName = event.currentTarget.closest('.test-card').querySelector('h1').innerText;
+  const confirmDel = window.confirm(`Delete ${testName}`);
+
+  if (!confirmDel) return;
 
   try {
     const response = await fetch(`http://localhost:8080/api/test/${id}`, {

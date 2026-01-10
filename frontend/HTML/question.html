@@ -8,7 +8,27 @@
 </head>
 <body>
   <div class="container">
-    <div class="content"></div>
+    <h1></h1>
+    <div class="headerBtn">
+      <button id="addQ" popovertarget="add-form" popovertargetaction="show">Add</button>
+      <button id="play">Play</button>
+    </div>
+    <div class="content">
+      <div class="qCard">
+        <p>Question</p>
+        <div class="buttons">
+          <button class="editBtn">Edit</button>
+          <button class="deleteBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <div id="add-form" popover="auto">
+    <label for="question-name"></label>
+    <input type="text" id="question-name" placeholder="Enter name...">
+    <button id="enter" popovertarget="add-form" popovertargetaction="hide">Enter</button>
+    <button id="close" popovertarget="add-form" popovertargetaction="hide">Close</button>
   </div>
 
   <script src="../JS/question.js"></script>

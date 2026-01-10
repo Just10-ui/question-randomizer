@@ -5,6 +5,8 @@
 }
 
 body {
+  font-family: sans-serif;
+  position: relative;
   overflow-y: hidden;
 }
 
@@ -15,4 +17,131 @@ body {
   height: 90vh;
   margin: 2.5rem auto;
   padding: 25px 20px;
+}
+
+#addQ, #play {
+  font-size: 1.2rem;
+  padding: 10px 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0000ff;
+  color: #fff;
+  box-shadow: -3px 6px #515151;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+#addQ {
+  margin-right: 10px;
+}
+
+#addQ:hover, #play:hover {
+  background-color: #003cff;
+  box-shadow: -5px 8px #888;
+  transform: translateY(-5px);
+}
+
+.content {
+  border: 1px solid #000;
+  border-radius: 10px;
+  margin: 2rem auto;
+  padding: 20px 30px;
+  width: 90%;
+  height: 80%;
+}
+
+.qCard {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+}
+
+.qCard p {
+  margin-bottom: 10px;
+}
+
+.editBtn {
+  width: 20%;
+  padding: 7px 0;
+  margin-right: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #008000;
+  color: #fff;
+  box-shadow: -3px 3px #515151;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.editBtn:hover {
+  background-color: #004800;
+  transform: translateY(-3px);
+  box-shadow: -3px 6px #888;
+}
+
+.deleteBtn {
+  width: 20%;
+  padding: 7px 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #e20000;
+  color: #fff;
+  box-shadow: -3px 3px #515151;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.deleteBtn:hover {
+  background-color: #650000;
+  transform: translateY(-3px);
+  box-shadow: -3px 6px #888;
+}
+
+#add-form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  width: 35vw;
+  height: 8vh;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+
+#question-name {
+  width: 74%;
+  height: 98%;
+  padding: 0 10px;
+}
+
+#enter, #close {
+  width: 12%;
+  height: 100%;
+  cursor: pointer;
+}
+
+#enter {
+  background-color: #2401bf;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  transition: background-color .5s ease;
+}
+
+#enter:hover {
+  background-color: #0f0050;
+}
+
+#close {
+  background-color: #bf1101;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  transition: background-color .5s ease;
+}
+
+#close:hover {
+  background-color: #5e0800;
 }
