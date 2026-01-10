@@ -52,9 +52,9 @@ body {
 
 #addTest {
   font-size: 1.2rem;
-  padding: 8px 25px;
+  padding: 10px 40px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #0000ff;
   color: #fff;
   box-shadow: -3px 6px #515151;
@@ -72,7 +72,7 @@ body {
   width: 47%;
   padding: 7px 0;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #008000;
   color: #fff;
   box-shadow: -3px 3px #515151;
@@ -90,7 +90,7 @@ body {
   width: 47%;
   padding: 7px 0;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #e20000;
   color: #fff;
   box-shadow: -3px 3px #515151;
