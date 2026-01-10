@@ -2,7 +2,7 @@ import pool from '../database/db.js';
 
 export const viewTest = async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM test;');
+    const result = await pool.query('SELECT * FROM test ORDER BY test_id;');
 
     res.status(200).json({message: 'This is all the test', test: result.rows});
   } catch (error) {
@@ -45,6 +45,19 @@ export const deleteTest = async (req, res) => {
     const result = await pool.query('DELETE FROM test WHERE test_id = $1 RETURNING *;', [testId]);
 
     res.status(200).json({message: 'Test successfully deleted', test: result.rows[0]});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: 'Server can\'t be reached'});
+  }
+};
+
+export const getTest = async (req, res) => {
+  const testId = req.params.testId;
+
+  try {
+    const result = await pool.query('SELECT * FROM test WHERE test_id = $1;', [testId]);
+
+    res.status(200).json(result.rows);
   } catch (error) {
     console.log(error);
     res.status(500).json({message: 'Server can\'t be reached'});

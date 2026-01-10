@@ -12,6 +12,8 @@ async function viewTest() {
     data.test.forEach(value => {
       const card = document.createElement('div');
       card.className = 'test-card';
+      card.id = value.test_id;
+      card.addEventListener('click', () => goToQuestions(card.id));
       const h1 = document.createElement('h1');
       h1.innerText = value.test_name;
       const buttons = document.createElement('div');
@@ -20,10 +22,12 @@ async function viewTest() {
       editBtn.className = 'editBtn';
       editBtn.innerText = 'Edit';
       editBtn.id = value.test_id;
+      editBtn.addEventListener('click', editTest);
       const deleteBtn = document.createElement('button');
       deleteBtn.className = 'deleteBtn';
       deleteBtn.innerText = 'Delete';
       deleteBtn.id = value.test_id;
+      deleteBtn.addEventListener('click', deleteTest);
 
       buttons.append(editBtn, deleteBtn);
       card.append(h1, buttons);
@@ -54,4 +58,50 @@ async function addTest() {
   } catch (error) {
     console.log(error);
   }
+}
+
+async function editTest(event) {
+  const clickedBtn = event.currentTarget;
+  const id = event.currentTarget.id;
+  const testCard = clickedBtn.closest('.test-card');
+  const testText =  testCard.querySelector('h1');
+  const update = window.prompt('Edit name', testText.innerText);
+
+  if (update == null || update.trim() == '') {
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:8080/api/test/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({testName: update})
+    });
+    const data = await response.json();
+    window.alert(data.message);
+    viewTest();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function deleteTest(event) {
+  const id = event.currentTarget.id;
+
+  try {
+    const response = await fetch(`http://localhost:8080/api/test/${id}`, {
+      method: 'DELETE'
+    });
+    const data = await response.json();
+    window.alert(data.message);
+    viewTest();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function goToQuestions(testId) {
+  window.location.href = `question.html?test_id=${testId}`;
 }

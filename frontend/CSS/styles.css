@@ -11,8 +11,8 @@ body {
 
 .container {
   border: 1px solid #000;
-  margin: 2.5rem auto;
-  padding: 40px 30px;
+  margin: 2rem auto;
+  padding: 25px 30px;
   width: 40vw;
   height: 80vh;
   border-radius: 10px;
@@ -22,7 +22,7 @@ body {
   border: 1px solid #000;
   padding: 30px 20px;
   margin-top: 15px;
-  height: 80%;
+  height: 75%;
   border-radius: 10px;
 }
 
@@ -30,10 +30,18 @@ body {
   border: 1px solid #000;
   border-radius: 8px;
   padding: 10px 25px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: -3px 8px #515151;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.test-card:hover {
+  transform: translateY(-5px);
+  box-shadow: -5px 10px #888;
 }
 
 .buttons {
@@ -49,12 +57,15 @@ body {
   border-radius: 5px;
   background-color: #0000ff;
   color: #fff;
+  box-shadow: -3px 6px #515151;
   cursor: pointer;
-  transition: background-color .5s ease;
+  transition: all .5s ease;
 }
 
 #addTest:hover {
-  background-color: #010183;
+  background-color: #003cff;
+  box-shadow: -5px 8px #888;
+  transform: translateY(-5px);
 }
 
 .editBtn {
@@ -64,12 +75,15 @@ body {
   border-radius: 5px;
   background-color: #008000;
   color: #fff;
+  box-shadow: -3px 3px #515151;
   cursor: pointer;
-  transition: background-color .5s ease;
+  transition: all .5s ease;
 }
 
 .editBtn:hover {
   background-color: #004800;
+  transform: translateY(-3px);
+  box-shadow: -3px 6px #888;
 }
 
 .deleteBtn {
@@ -79,12 +93,15 @@ body {
   border-radius: 5px;
   background-color: #e20000;
   color: #fff;
+  box-shadow: -3px 3px #515151;
   cursor: pointer;
-  transition: background-color .5s ease;
+  transition: all .5s ease;
 }
 
 .deleteBtn:hover {
   background-color: #650000;
+  transform: translateY(-3px);
+  box-shadow: -3px 6px #888;
 }
 
 #add-form {
