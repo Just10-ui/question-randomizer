@@ -1,8 +1,10 @@
 const params = new URLSearchParams(window.location.search);
 const testId = params.get("test_id");
 const enter = document.getElementById('enter');
+const play = document.getElementById('play');
 
 enter.addEventListener('click', addQuestion);
+play.addEventListener('click', () => playQ(testId));
 
 async function getTestName() {
   const container = document.querySelector('.container');
@@ -39,10 +41,12 @@ async function viewQuestions() {
       editBtn.innerText = 'Edit';
       editBtn.className = 'editBtn';
       editBtn.id = val.question_id;
+      editBtn.addEventListener('click', editQuestion);
       const delBtn = document.createElement('button');
       delBtn.innerText = 'Delete';
       delBtn.className = 'deleteBtn';
       delBtn.id = val.question_id;
+      delBtn.addEventListener('click', deleteQuestion);
 
       buttons.append(editBtn, delBtn);
       card.append(description, buttons);
@@ -73,4 +77,54 @@ async function addQuestion() {
   } catch (error) {
     console.log(error);
   }
+}
+
+async function editQuestion(event) {
+  event.stopPropagation();
+  const clickedBtn = event.currentTarget;
+  const id = event.currentTarget.id;
+  const text = clickedBtn.closest('.qCard').querySelector('p').innerText;
+  const update = window.prompt('Edit name', text);
+
+  if (update == null || update.trim() == '') {
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:8080/api/questions/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ description: update })
+    });
+    const data = await response.json();
+    window.alert(data.message);
+    viewQuestions();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function deleteQuestion(event) {
+  event.stopPropagation();
+  const id = event.currentTarget.id;
+  const confirmDel = window.confirm('Delete this question?');
+
+  if (!confirmDel) return;
+
+  try {
+    const response = await fetch(`http://localhost:8080/api/questions/delete/${id}`, {
+      method: 'DELETE'
+    });
+    const data = await response.json();
+    window.alert(data.message);
+    viewQuestions();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function playQ(id) {
+  window.location.href = `play.html?test_id=${id}`;
 }

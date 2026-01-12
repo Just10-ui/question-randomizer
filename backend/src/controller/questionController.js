@@ -18,7 +18,7 @@ export const addQuestion = async (req, res) => {
 export const viewQuestion = async (req, res) => {
   const testId = req.params.testId;
   try {
-    const result = await pool.query('SELECT * FROM questions WHERE test_id = $1;', [testId]);
+    const result = await pool.query('SELECT * FROM questions WHERE test_id = $1 ORDER BY question_id;', [testId]);
     res.status(201).json({message: 'These are all the questions', result: result.rows});
   } catch (error) {
     console.log(error);
