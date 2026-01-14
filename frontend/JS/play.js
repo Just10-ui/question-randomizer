@@ -3,11 +3,18 @@ const testId = params.get('test_id');
 const refresh = document.getElementById('refresh');
 const next = document.getElementById('next');
 const prev = document.getElementById('back');
+const finish = document.getElementById('finish');
+finish.style.display = 'none';
 let index = 0;
 
 refresh.addEventListener('click',shuffleQuestion);
 next.addEventListener('click', nextQ);
 prev.addEventListener('click', prevQ);
+finish.addEventListener('click', () => finishPlay(testId));
+
+if (index === 0) {
+  prev.style.display = 'none';
+}
 
 async function shuffleQuestion() {
   const container = document.querySelector('.container');
@@ -31,18 +38,28 @@ shuffleQuestion();
 
 function nextQ() {
   const p = document.querySelectorAll('.container p');
-  if(index < p.length - 1 >= index) {
+  if (index < p.length - 1 >= index) {
     p[index].style.display = 'none';
     index += 1;
+    if (index === p.length - 1) {
+      next.style.display = 'none';
+      finish.style.display = 'inline-block';
+    }
+    prev.style.display = index === 0 ? 'none' : 'inline-block';
     p[index].style.display = 'block';
   }
 }
 
 function prevQ() {
   const p = document.querySelectorAll('.container p');
-  if(index > 0) {
+  if (index > 0) {
     p[index].style.display = 'none';
     index -= 1;
+    prev.style.display = index === 0 ? 'none' : 'inline-block';
     p[index].style.display = 'block';
   }
 }
+
+ function finishPlay(id) {
+  window.location.href = `question.html?test_id=${id}`;
+ }
